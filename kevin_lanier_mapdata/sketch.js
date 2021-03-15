@@ -1,4 +1,5 @@
 //Followed in class code of mfranz mapbox 
+//This data shows the top ten golf courses in the U.S. according to golf digest
 
 const key = 'pk.eyJ1IjoicG9zdHBsYXN0aWMiLCJhIjoiY2tpamJyNm1zMDE0OTJ0czU5cDkyNjE3ciJ9.VRXSaQR1sQoWudM3Bgp9Lg';
 
@@ -24,8 +25,9 @@ function setup() {
 
 function draw() {
  clear();
- stroke(255);
- strokeWeight(3);
+  fill(255);
+ stroke(0);
+ strokeWeight(0);
   const zoom = myMap.zoom();
  const athens = myMap.latLngToPixel(39.3292,-82.1013);
 
@@ -35,13 +37,16 @@ function draw() {
     const longitude = Number(gcs.getString(i,'longitude'));
     const pos = myMap.latLngToPixel(latitude,longitude);
     
-         let address = gcs.getString(i,'address');
+         let address = gcs.getString(i,'location');
 
     
          ellipse(pos.x,pos.y,1 * myMap.zoom(),1 * myMap.zoom());
+    strokeWeight(2);
+    stroke(255);
     
  if(dist(pos.x,pos.y,mouseX,mouseY) < 1 * myMap.zoom()){
-    textSize(32);
+    textSize(25);
+   noStroke();
      text(address,pos.x,pos.y);
   }
     
